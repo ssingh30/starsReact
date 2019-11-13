@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+  </head>
+  <link rel="stylesheet" href="stars.css">
+  <body>
+    <div id="loc"></div>
+    <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <script type="text/babel">
+      class Test extends React.Component{
+        constructor(props){
+          super(props)
+          this.state={
+            index: 0,
+            locked: false, 
+            starsText: 'You are giving 0 stars'
+          }
+        }
+        render(){
+          const stars=[1,2,3,4,5].map((v)=>{
+            let removed= "far fa-star"
+            if(v<= this.state.index){
+              removed= "fas fa-star"
+            }
+            return <i className={removed} key={v}
+              onMouseMove={()=>{
+                if(this.state.locked) return
+              this.setState({
+               index:v,
+               starsText: `You are giving ${v} stars!`
+              })
+              }}
+              onClick={()=>{
+              this.setState({
+                locked: true,
+                starsText: `You have given ${v} stars!`
+              })
+              }}
+            ></i> 
+          })
+          return(
+          <div id="starsContainer"
+          onMouseLeave={()=>{
+            this.setState({
+              locked: false
+            })
+          }}
+          >
+          <div> {stars}</div>
+          <div> {this.state.starsText} </div>
+          </div>
+          )
+        }
+      }
+      ReactDOM.render(<Test/>, document.getElementById('loc'));
+    </script>
+  </body>
+</html>

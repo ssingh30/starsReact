@@ -1,0 +1,16 @@
+.fas{
+  -webkit-text-stroke-width: 3px;
+  -webkit-text-stroke-color: black;
+  cursor: pointer;
+  color: yellow;
+}
+.far{
+  cursor: pointer;
+  font-size: 35px;
+}
+.container{
+  display:block;
+}
+.texto{
+  margin-top: 10px;
+}
